@@ -1,0 +1,85 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+apply plugin: "com.ewerk.gradle.plugins.querydsl"
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-tomcat'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    //implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.1.6.RELEASE'
+    //implementation group: 'org.springframework.data', name: 'spring-data-mongodb', version: '3.2.4'
+    implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.1.9.RELEASE'
+
+    implementation 'org.springframework:spring-jdbc:5.2.3.RELEASE'
+    implementation 'org.mybatis:mybatis:3.5.1'
+    implementation 'org.mybatis:mybatis-spring:2.0.1'
+
+    //implementation group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo', version: '3.0.0'
+
+    implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.3'
+    implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.4.4'
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
+    implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.4.18.Final'
+    implementation 'org.apache.commons:commons-dbcp2:2.7.0'
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    //querydsl 추가
+    implementation 'com.querydsl:querydsl-jpa'
+    //querydsl 추가
+    implementation 'com.querydsl:querydsl-apt'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+def querydslDir = "$buildDir/generated/querydsl"
+
+querydsl {
+    library = "com.querydsl:querydsl-apt"
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+
+sourceSets {
+    main.java.srcDir querydslDir
+}
+
+configurations {
+    querydsl.extendsFrom compileClasspath
+}
+
+compileQuerydsl{
+    options.annotationProcessorPath = configurations.querydsl
+}
+
