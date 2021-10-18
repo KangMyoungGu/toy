@@ -1,6 +1,6 @@
 # Toy Project
-##개발환경
-###B-E
+## 개발환경
+### B-E
 * IDE : intelliJ
 * Spring boot : 2.4.4
 * DataBase : MariaDb
@@ -8,19 +8,19 @@
 * JDK : 1.8
 * Tomcat : embedded Tomcat
 
-###F-E
+### F-E
 * IDE : Visual Studio Code
 * Framework : React (17.0.0-12adaffef)
 * node version : v14.18.1
 
-##실행방법
-###B-E
+## 실행방법
+### B-E
 * 프로젝트 환경 설정 후, ToyApplication Start
 * DataBase의 경우, AWS RDS 사용
-###F-E
+### F-E
 * 프로젝트 내려 받은 후, terminal 에 npm run start 실행하여 서버 구동
 
-##문제 해결 전략
+## 문제 해결 전략
 * 고객의 문의에 대하여 상태를 답변대기 / 상담원 지정완료 / 답변완료 3가지로 나누었으며
 상담원 지정 후, 특정기간내에 답변을 하지 못할 경우, 다시 답변 대기 상태로 두어, 다른 상담원에게 지정이 가능하도록
 구성함.
