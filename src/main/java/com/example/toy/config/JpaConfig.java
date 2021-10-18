@@ -25,9 +25,9 @@ public class JpaConfig {
         BasicDataSource dataSource = new BasicDataSource();
 
         dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://studywebservice.cifparuhtiqu.ap-northeast-2.rds.amazonaws.com:3306/toy?serverTimezone=UTC&characterEncoding=UTF-8");
-        dataSource.setUsername("kmg1123ck");
-        dataSource.setPassword("rjan0937");
+        dataSource.setUrl("");
+        dataSource.setUsername("");
+        dataSource.setPassword("");
 
         dataSource.setDefaultAutoCommit(false);
 
